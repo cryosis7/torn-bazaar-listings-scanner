@@ -1,0 +1,22 @@
+{
+  "name": "bazaar-listings-scanner",
+  "version": "0.1.0",
+  "description": "Looks up the bazaar listing prices for an item",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cryosis7/torn-bazaar-listings-scanner.git"
+  },
+  "author": "Scott C",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cryosis7/torn-bazaar-listings-scanner/issues"
+  },
+  "homepage": "https://github.com/cryosis7/torn-bazaar-listings-scanner#readme",
+  "devDependencies": {
+    "electron": "^6.0.12"
+  }
+}
