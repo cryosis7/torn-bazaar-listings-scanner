@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bazaar Listings Scanner</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self';" /> -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="scripts/scanner.js"></script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+
+<body>
+    <div style="max-height: 20vh;">
+        <input type="text" class="margin_tb_5" id="item_text" placeholder="Enter Item">
+        <button type="button" id="search_btn" class="button margin_tb_5" onclick="searchBazaars()" disabled>Search</button>
+        <input type="text" class="margin_tb_5" id="api_key" placeholder="API Key">
+        <hr>
+    </div>
+
+    <div style="text-align: center">
+        <div class="loader"></div>
+    </div>
+
+    <div style="position: relative; height: 80vh" hidden>
+        <div id="message" class="text_heading center" style="text-align: center;"></div>
+    </div>
+
+    <div class="results_container">
+        <h1 id="item_name" class="text_heading" hidden>Item</h1>
+        <table id="listings" hidden>
+            <th class="text_subheading">Quantity</th>
+            <th class="text_subheading">Cost</th>
+            <th class="text_subheading">Total Cost</th>
+        </table>
+    </div>
+</body>
+
+</html>
