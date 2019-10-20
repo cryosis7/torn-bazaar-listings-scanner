@@ -13,6 +13,7 @@
         }
     </script>
     <script src="scripts/scanner.js"></script>
+    <script src="scripts/textboxListeners.js"></script>
     <script>
         if (window.module) module = window.module;
     </script>
@@ -20,23 +21,32 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
-<body>
-    <div style="max-height: 20vh;">
-        <input type="text" class="margin_tb_5" id="item_text" placeholder="Enter Item">
-        <button type="button" id="search_btn" class="button margin_tb_5" onclick="searchBazaars()" disabled>Search</button>
-        <input type="text" class="margin_tb_5" id="api_key" placeholder="API Key">
-        <hr>
+<body class="text_normal">
+    <div style="padding: 1em 0 1em 0;">
+        <div class="textbox_container" style="float: left;">
+            <input type="text" id="item_text" onchange="setClass()">
+            <label>Enter Item</label>
+            <span class="focus_border"></span>
+        </div>
+        <button type="button" id="search_btn" onclick="searchBazaars()" disabled>Search</button>
+        <div class="textbox_container" style="float: right;">
+            <input type="text" id="api_key" onchange="setClass()">
+            <label>API Key</label>
+            <span class="focus_border"></span>
+        </div>
     </div>
+
+    <hr>
 
     <div style="text-align: center">
         <div class="loader"></div>
     </div>
 
     <div style="position: relative; height: 80vh" hidden>
-        <div id="message" class="text_heading center" style="text-align: center;"></div>
+        <div id="message" class="text_heading center " style="text-align: center;"></div>
     </div>
 
-    <div class="results_container">
+    <div class="results_container ">
         <h1 id="item_name" class="text_heading" hidden>Item</h1>
         <table id="listings" hidden>
             <th class="text_subheading">Quantity</th>
