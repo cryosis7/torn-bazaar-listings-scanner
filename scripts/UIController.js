@@ -20,8 +20,19 @@ exports.setError = function (json) {
         let errorMsg = errorMessages[json.code] == badError ? `${badError}: ${json.code}` : errorMessages[json.code];
 
         $('#search_btn').prop('disabled', false);
-        showLoader(false, showMessage(true, errorMsg))
+        showLoader(false, x => showMessage(true, errorMsg))
     });
+}
+
+exports.populateTable = function(data) {
+    data = [
+        {'quantity': 2, 'price': '840000'},
+        {'quantity': 4, 'price': '845000'},
+        {'quantity': 1, 'price': '847000'}];
+
+    let html = data.map(row => `<tr><td>${row.quantity}</td><td>${row.price}</td><td>${row.quantity * row.price}</td></tr>`)
+    $('#listings tr:has(td)').remove();
+    $('#listings tr').after(html);
 }
 
 /**

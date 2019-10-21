@@ -38,7 +38,7 @@
 
     <hr>
 
-    <div style="text-align: center">
+    <div style="text-align: center" hidden>
         <div class="loader"></div>
     </div>
 
@@ -46,10 +46,11 @@
         <div id="message" class="text_heading center " style="text-align: center;"></div>
     </div>
 
-    <div class="results_container ">
-        <h1 id="item_name" class="text_heading" hidden>Item</h1>
-        <table id="listings" hidden>
-            <th class="text_subheading">Quantity</th>
+    <div class="results_container" hidden>
+        <h1 id="item_name" class="text_heading">Item</h1>
+        <table id="listings">
+                <!-- TODO: Switch Quantity with Cost -->
+            <th class="text_subheading">Quantity</th>  
             <th class="text_subheading">Cost</th>
             <th class="text_subheading">Total Cost</th>
         </table>

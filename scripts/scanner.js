@@ -6,8 +6,10 @@ let key = 'CK0CNIdDaOge7HES';
 let allItems = {}
 
 $(function() {
-    UI.showTable(false);
-    getData(x => setAllItems(x), 'torn', 'items');
+    $('#search_btn').prop('disabled', false);
+    UI.showTable(true);
+    UI.populateTable();
+    // getData(x => setAllItems(x), 'torn', 'items');
 })
 
 function searchBazaars() {
@@ -15,6 +17,8 @@ function searchBazaars() {
         key = $('#api_key').val().replace(' ', '');
     }
     console.log(allItems);
+
+    UI.populateTable();
 }
 
 function setAllItems(json) {
@@ -34,7 +38,7 @@ function setAllItems(json) {
     }
 
     $('#search_btn').prop('disabled', false);
-    UI.showLoader(false, function() { UI.showMessage(true, "Enter an item and your API key to search the market price.") });
+    UI.showLoader(false, x => UI.showMessage(true, "Enter an item and your API key to search the market price."));
 }
 
 function getData(callback, category, selections, id = '') {

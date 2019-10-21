@@ -69,6 +69,21 @@ button:disabled {
     background-color: #aaa;
 }
 
+.results_container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.results_container > #item_name {
+    display: inline-block;
+}
+
+#listings {
+    /* width: 80%; */
+}
+
 th {
     width: 20%;
 }
