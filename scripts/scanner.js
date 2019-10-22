@@ -17,9 +17,9 @@ function searchBazaars() {
 
     UI.makeTransition('loader');
     getItem($('#item_text.has-content').val(), item => {
-        getBazaarPrices(item.id, (bazaarPrices) => {
+        getBazaarPrices(item, (bazaarPrices) => {
             bazaarPrices = bazaarPrices.sort((a, b) => a.price <= b.price ? -1 : 1);
-            UI.populateTable(bazaarPrices.slice(0, Math.min(11, bazaarPrices.length)));
+            UI.populateTable(item.name, bazaarPrices.slice(0, Math.min(11, bazaarPrices.length)));
             UI.makeTransition('table');
         });
     });
@@ -87,15 +87,18 @@ async function getItem(usersItemName, callback) {
 
 /**
  * Retrieves an array of bazaar prices for an ID, then executes a callback function.
- * @param {*} id ID of the item to search bazaar prices for
+ * @param {object} item The item to search bazaar prices for
  * @param {function} callback The function to execute upon completion
  */
-function getBazaarPrices(id, callback) {
-    let NUM_TO_RETRIEVE = 5;
-
+function getBazaarPrices(item, callback) {
     getData(function(json) {
-        callback(Object.keys(json.bazaar).map(function(listing) {
-            return { 'price': json.bazaar[listing].cost, 'quantity': json.bazaar[listing].quantity }
-        }));
-    }, 'market', 'bazaar', id)
+        if (json.bazaar !== null) {
+
+            callback(Object.keys(json.bazaar).map(function(listing) {
+                return { 'price': json.bazaar[listing].cost, 'quantity': json.bazaar[listing].quantity }
+            }));
+        } else {
+            UI.makeTransition('message', 'No listings on market for ' + item.name);
+        }
+    }, 'market', 'bazaar', item.id)
 }

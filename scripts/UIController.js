@@ -14,6 +14,11 @@ const errorMessages = {
     11: 'Recent Key Change - Try again shortly',
     12: 'Torn had an issue reading the key from the database'
 };
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0
+});
 
 $(function() {
     $('.results_container').hide();
@@ -30,10 +35,15 @@ exports.setError = function(json) {
     makeTransition('message', errorMsg)
 }
 
-function populateTable(data) {
-    let html = data.map(row => `<tr><td>${row.quantity}</td><td>${row.price}</td><td>${row.quantity * row.price}</td></tr>`)
+function populateTable(item, data) {
+    let html = data.map(row => `
+        <tr><td>${row.quantity}</td>
+        <td>${formatter.format(row.price)}</td>
+        <td>${formatter.format(row.quantity * row.price)}</td>
+        </tr>`)
     $('#listings tr:has(td)').remove();
     $('#listings tr').after(html);
+    $('#item_name').text(item);
 }
 
 /**

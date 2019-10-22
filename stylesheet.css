@@ -74,18 +74,34 @@ button:disabled {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    width: 100%;
 }
 
-.results_container > #item_name {
+
+/* .results_container>#item_name {
     display: inline-block;
+} */
+
+table#listings {
+    display: inline-block;
+    border-collapse: collapse;
 }
 
-#listings {
-    /* width: 80%; */
+table#listings td,
+table#listings th {
+    width: 30%;
+    padding: 0 1em 0 1em;
 }
 
-th {
-    width: 20%;
+table#listings td:nth-child(2) {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0 1px 0 1px;
+}
+
+table#listings td:nth-child(2),
+table#listings td:nth-child(3) {
+    text-align: right;
 }
 
 .loader {
