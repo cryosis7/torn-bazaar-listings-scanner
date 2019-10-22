@@ -1,5 +1,5 @@
-let badError = 'Oops, you found a bug. Please send a message to Cryosis7[926640] with the error code';
-let errorMessages = {
+const badError = 'Oops, you found a bug. Please send a message to Cryosis7[926640] with the error code';
+const errorMessages = {
     0: badError,
     1: 'No Key Entered',
     2: 'Incorrect API Key',
@@ -15,24 +15,49 @@ let errorMessages = {
     12: 'Torn had an issue reading the key from the database'
 };
 
-exports.setError = function (json) {
-    showTable(false, function () {
-        let errorMsg = errorMessages[json.code] == badError ? `${badError}: ${json.code}` : errorMessages[json.code];
+$(function() {
+    $('.results_container').hide();
+    $('#message').parent().hide();
+    $('.loader').parent().hide();
+});
 
-        $('#search_btn').prop('disabled', false);
-        showLoader(false, x => showMessage(true, errorMsg))
-    });
+exports.makeTransition = makeTransition;
+exports.showLoader = showLoader;
+exports.populateTable = populateTable;
+
+exports.setError = function(json) {
+    let errorMsg = errorMessages[json.error.code] == badError ? `${badError}: ${json.error.code}` : errorMessages[json.error.code];
+    makeTransition('message', errorMsg)
 }
 
-exports.populateTable = function(data) {
-    data = [
-        {'quantity': 2, 'price': '840000'},
-        {'quantity': 4, 'price': '845000'},
-        {'quantity': 1, 'price': '847000'}];
-
+function populateTable(data) {
     let html = data.map(row => `<tr><td>${row.quantity}</td><td>${row.price}</td><td>${row.quantity * row.price}</td></tr>`)
     $('#listings tr:has(td)').remove();
     $('#listings tr').after(html);
+}
+
+/**
+ * Makes a transition between elements.
+ * @param {string} element The element to show. Either 'loader', 'message' or 'table'
+ * @param {boolean} message The message to set the message element to.
+ */
+function makeTransition(element, message) {
+    switch (element.toLowerCase()) {
+        case 'loader':
+            showMessage(false);
+            showTable(false, () => showLoader(true));
+            break;
+        case 'table':
+            showMessage(false);
+            showLoader(false, () => showTable(true));
+            break;
+        case 'message':
+            showLoader(false);
+            showTable(false, () => showMessage(true, message));
+            break;
+        default:
+            throw 'Invalid Parameter - Expected "loader/message/table"';
+    }
 }
 
 /**
@@ -40,17 +65,17 @@ exports.populateTable = function(data) {
  * @param {boolean} show True if showing the table, false if hiding.
  * @param {Function} [callback] The function to execute upon completion
  */
-exports.showTable = function (show, callback) {
+function showTable(show, callback) {
     if (callback !== undefined) {
-        if (show && !$('.results_container').is(":visible")) {
+        if (show && $('.results_container').is(":hidden")) {
             $('.results_container').fadeIn(200, callback);
-        } else if (!show && $('#item_name').is(":visible")) {
+        } else if (!show && $('#item_name').not(":hidden")) {
             $('.results_container').fadeOut(200, callback);
         } else callback();
     } else {
-        if (show && !$('.results_container').is(":visible")) {
+        if (show && $('.results_container').is(":hidden")) {
             $('.results_container').fadeIn(200);
-        } else if (!show && $('#item_name').is(":visible")) {
+        } else if (!show && $('#item_name').not(":hidden")) {
             $('.results_container').fadeOut(200);
         }
     }
@@ -62,24 +87,24 @@ exports.showTable = function (show, callback) {
  * @param {string} [message] Optional parameter to change the text.
  * @param {*} [callback] Optional function to execute upon completion
  */
-exports.showMessage = function (show, message, callback) {
+function showMessage(show, message, callback) {
     if (callback === undefined) {
-        if (show && !$('#message').is(":visible")) {
+        if (show && $('#message').is(":hidden")) {
             if (message !== undefined) $('#message').text(message);
             $('#message').parent().fadeIn(200);
-        } else if (!show && $('#item_name').is(":visible")) {
+        } else if (!show && $('#item_name').not(":hidden")) {
             $('#message').parent().fadeOut(200);
             if (message !== undefined) $('#message').text(message);
-        } else if (show && $('#message').is(":visible")) {
+        } else if (show && $('#message').not(":hidden")) {
             if (message !== undefined) $('#message').text(message);
         }
     } else {
-        if (show && !$('#message').is(":visible")) {
+        if (show && $('#message').is(":hidden")) {
             $('#message').text(message);
             $('#message').parent().fadeIn(200, callback);
-        } else if (!show && $('#item_name').is(":visible")) {
+        } else if (!show && $('#item_name').not(":hidden")) {
             $('#message').parent().fadeOut(200, callback);
-        } else if (show && $('#message').is(":visible")) {
+        } else if (show && $('#message').not(":hidden")) {
             $('#message').text(message);
             callback();
         }
@@ -91,19 +116,17 @@ exports.showMessage = function (show, message, callback) {
  * @param {boolean} show True if showing the loader, false if hiding.
  * @param {*} [callback] Optional function to execute upon completion
  */
-exports.showLoader = function (show, callback) {
-    console.log(callback);
-    
+function showLoader(show, callback) {
     if (callback !== undefined) {
-        if (show && !$('.loader').parent().is(":visible")) {
+        if (show && $('.loader').parent().is(":hidden")) {
             $('.loader').parent().fadeIn(200, callback);
-        } else if (!show && $('.loader').parent().is(":visible")) {
+        } else if (!show && $('.loader').parent().not(":hidden")) {
             $('.loader').parent().fadeOut(200, callback);
         } else callback();
     } else {
-        if (show && !$('.loader').parent().is(":visible")) {
+        if (show && $('.loader').parent().is(":hidden")) {
             $('.loader').parent().fadeIn(200);
-        } else if (!show && $('#item_name').parent().is(":visible")) {
+        } else if (!show && $('#item_name').parent().not(":hidden")) {
             $('.loader').parent().fadeOut(200);
         }
     }
