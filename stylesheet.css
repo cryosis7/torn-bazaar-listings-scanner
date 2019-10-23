@@ -90,7 +90,7 @@ table#listings {
 table#listings td,
 table#listings th {
     width: 30%;
-    padding: 0 1em 0 1em;
+    padding: 0.2em 1em 0.2em 1em;
 }
 
 table#listings td:nth-child(2) {
