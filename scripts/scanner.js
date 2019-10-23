@@ -16,7 +16,6 @@ function searchBazaars() {
         key = $('#api_key').val().replace(' ', '');
     }
 
-    UI.makeTransition('loader');
     getItem($('#item_text.has-content').val(), item => {
         getBazaarPrices(item, (bazaarPrices) => {
             bazaarPrices = bazaarPrices.sort((a, b) => a.price <= b.price ? -1 : 1);

@@ -19,17 +19,11 @@ const formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
     minimumFractionDigits: 0
 });
-const tableElement = $('.results_container');
-const messageElement = $('#message').parent();
-const loaderElement = $('.loader').parent();
 
 $(function() {
-    // $('.results_container').hide();
-    // $('#message').parent().hide();
-    // $('.loader').parent().hide();
-    $('.results_container').detach();
-    $('#message').parent().detach();
-    $('.loader').parent().detach();
+    $('.results_container').hide();
+    $('#message').parent().hide();
+    $('.loader').parent().hide();
 });
 
 exports.makeTransition = makeTransition;
