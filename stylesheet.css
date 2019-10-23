@@ -69,6 +69,11 @@ button:disabled {
     background-color: #aaa;
 }
 
+#message {
+    position: relative;
+    transform: translateY(25%);
+}
+
 .results_container {
     position: absolute;
     left: 50%;
@@ -76,11 +81,6 @@ button:disabled {
     text-align: center;
     width: 100%;
 }
-
-
-/* .results_container>#item_name {
-    display: inline-block;
-} */
 
 table#listings {
     display: inline-block;
