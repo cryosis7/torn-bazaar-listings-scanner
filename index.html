@@ -24,13 +24,13 @@
 <body class="text_normal">
     <div style="padding: 1em 0 1em 0;">
         <div class="textbox_container" style="float: left;">
-            <input type="text" id="item_text" oninput="setClass()">
+            <input type="text" id="item_text" oninput="setClass()" onClick="this.select();">
             <label>Enter Item</label>
             <span class="focus_border"></span>
         </div>
         <button type="button" id="search_btn" onclick="searchBazaars()" disabled>Search</button>
         <div class="textbox_container" style="float: right;">
-            <input type="text" id="api_key" oninput="setClass()" value="CK0CNIdDaOge7HES">
+            <input type="text" id="api_key" oninput="setApiKey()" onClick="this.select();">
             <label>API Key</label>
             <span class="focus_border"></span>
         </div>

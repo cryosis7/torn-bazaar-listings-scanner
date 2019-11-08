@@ -1,19 +1,21 @@
 // TODO: Replace with min version of jQuery
 window.$ = window.jQuery = require('jquery');
 var UI = require('./scripts/UIController.js');
+const settings = require('electron-settings');
 
 var key;
 var allItems = [];
 
 $(function() {
     UI.makeTransition('message', "Enter an item and your API key to search the market price.");
-
     // getData(json => setAllItems(json), 'torn', 'items');
 })
+
 
 function searchBazaars() {
     if ($('#api_key').val() !== key) {
         key = $('#api_key').val().replace(' ', '');
+        // settings.set('api_key', key);
     }
 
     getItem($('#item_text.has-content').val(), item => {
