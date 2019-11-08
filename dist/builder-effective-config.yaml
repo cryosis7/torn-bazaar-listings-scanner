@@ -1,0 +1,6 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.cryosis.app
+productName: Bazaar Listings Scanner
+electronVersion: 6.0.12

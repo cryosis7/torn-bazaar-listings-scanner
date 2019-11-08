@@ -1,0 +1,4 @@
+owner: cryosis7
+repo: torn-bazaar-listings-scanner
+provider: github
+updaterCacheDirName: bazaar-listings-scanner-updater
