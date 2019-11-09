@@ -22,17 +22,32 @@
 </head>
 
 <body class="text_normal">
-    <div style="padding: 1em 0 1em 0;">
-        <div class="textbox_container" style="float: left;">
-            <input type="text" id="item_text" oninput="setClass()" onClick="this.select();">
-            <label>Enter Item</label>
-            <span class="focus_border"></span>
+    <div class="input_container">
+        <div style="position: relative;">
+            <div class="textbox_container">
+                <input type="text" id="item_text" oninput="setClass()" onClick="this.select();">
+                <label>Enter Item</label>
+                <span class="focus_border"></span>
+            </div>
+
+            <span class="right bottom">
+                <label>Results</label>
+                <div class="spinner_container">
+                    <button class="spin_button subtract">-</button>
+                    <input type="number" min="1" max="100" value="10" />
+                    <button class="spin_button add">+</button>
+                </div>
+            </span>
         </div>
-        <button type="button" id="search_btn" onclick="searchBazaars()" disabled>Search</button>
-        <div class="textbox_container" style="float: right;">
-            <input type="text" id="api_key" oninput="setApiKey()" onClick="this.select();">
-            <label>API Key</label>
-            <span class="focus_border"></span>
+
+        <div style="position: relative;">
+            <div class="textbox_container" style="margin: 1.5em 0 0 0;">
+                <input type="text" id="api_key" oninput="setApiKey()" onClick="this.select();">
+                <label>API Key</label>
+                <span class="focus_border"></span>
+            </div>
+
+            <button class="right bottom" type="button" id="search_btn" onclick="searchBazaars()" disabled>Search</button>
         </div>
     </div>
 

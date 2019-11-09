@@ -6,11 +6,6 @@ hr {
     border: 1px #68d170 solid;
 }
 
-.margin_tb_5 {
-    margin-top: 5pt;
-    margin-bottom: 5pt;
-}
-
 .center {
     margin: 0;
     position: absolute;
@@ -48,7 +43,28 @@ hr {
     letter-spacing: 0.1em;
 }
 
-button {
+.input_container {
+    padding: 0.5em 0 0.5em 0;
+    position: relative;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+}
+
+.vert_center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+#search_btn {
     margin-left: 1em;
     padding: 0.5em 1.2em;
     border-radius: 2em;
@@ -61,11 +77,11 @@ button {
     transition: all 0.2s;
 }
 
-button:hover {
+#search_btn:hover {
     background-color: #4caf50;
 }
 
-button:disabled {
+#search_btn:disabled {
     background-color: #aaa;
 }
 
@@ -182,4 +198,51 @@ input[type=text].has-content~label {
     font-size: 12px;
     color: #4caf50;
     transition: 0.3s;
+}
+
+
+/* Number Spinner */
+
+.spinner_container {
+    display: inline-block;
+    /* width: 100px; */
+    border: none;
+}
+
+input[type=number] {
+    text-align: center;
+    letter-spacing: 0.2em;
+    border: none;
+    background: #eee;
+    height: 2em;
+}
+
+
+/* Remove Arrows */
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.spin_button {
+    border: none;
+    background: #68d170;
+    color: black;
+    height: 2em;
+    width: 2em;
+}
+
+.spin_button:hover {
+    background: #4caf50;
+    color: white;
+}
+
+.spin_button.subtract {
+    border-radius: 1em 0 0 1em;
+}
+
+.spin_button.add {
+    border-radius: 0 1em 1em 0;
 }
