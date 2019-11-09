@@ -41,7 +41,7 @@ function setAllItems(json) {
     for (let x in json.items) {
         allItems.push({
             "name": json.items[x].name,
-            "stripped_name": json.items[x].name.toLowerCase().replace(/[^\w]/g, ''),
+            "lowercase_name": json.items[x].name.toLowerCase(),
             "id": x,
             "market_value": json.items[x].market_value !== 0 ? json.items[x].market_value : "No Market Value"
         });
@@ -79,9 +79,8 @@ async function getItem(usersItemName, callback) {
     }
 
     usersItemName = usersItemName.toLowerCase();
-    let strippedName = usersItemName.replace(/[^\w]/g, '');
     for (let item of allItems) {
-        if (item.stripped_name.includes(strippedName)) {
+        if (item.lowercase_name.includes(usersItemName)) {
             callback(item);
             return;
         }
