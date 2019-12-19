@@ -2,7 +2,7 @@
 
 This application is designed to scan the Torn bazaar listings and retrieve the prices for the items.
 
-<img align="center" src="https://i.imgur.com/XaN6iBA.png" alt="Bazaar Listings Scanner Demo">
+<img align="center" src="https://i.imgur.com/2V1CW88.png" alt="Bazaar Listings Scanner Demo">
 
 ## Getting Started
 
