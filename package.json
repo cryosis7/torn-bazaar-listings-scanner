@@ -23,7 +23,7 @@
     },
     "homepage": "https://github.com/cryosis7/torn-bazaar-listings-scanner#readme",
     "devDependencies": {
-        "electron": "^6.0.12",
+        "electron": "^13.6.6",
         "electron-builder": "^22.1.0"
     },
     "dependencies": {
